@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión en Vivo · Olimpiadas Matemáticas</title>
+    <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/theme.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar .brand {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Progress */
+        .progress-wrap {
+            margin-bottom: 2.5rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .progress-bar {
+            height: 8px;
+        }
+
+        /* Exercise container */
+        #exercise-container {
+            width: 100%;
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(20px);
+        }
+
+        @media(max-width:640px) {
+            #exercise-container {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Spinner */
+        .loading-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-height: 300px;
+            gap: 1rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-mesh"></div>
+
+    <header class="top-bar">
+        <div class="brand">Ejercicios</div>
+        <div class="flex items-center gap-2">
+            <div id="top-timer" class="timer-display" style="font-size:1.5rem; font-weight:800">--:--</div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema"
+                style="position: relative; top: 0; right: 0; width: 36px; height: 36px; font-size: 1.2rem;">
+                <span class="icon-sun"><i class="hgi-stroke hgi-sun-03"></i></span>
+                <span class="icon-moon" style="display: none;"><i class="hgi-stroke hgi-moon-02"></i></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="progress-wrap">
+            <div class="progress-header">
+                <span>PREGUNTA <span id="idx-current">1</span></span>
+                <span><span id="idx-total">5</span></span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-bar__fill" id="progress-fill" style="width:0%"></div>
+            </div>
+        </div>
+
+        <div id="exercise-container">
+            <div class="loading-wrap">
+                <div class="spinner"></div>
+                <p>Cargando ejercicio…</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast-container"></div>
+
+    <!-- Firebase & Logic -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/session-manager.js"></script>
+    <script src="../js/timer.js"></script>
+    <script src="../js/scoring.js"></script>
+    <script src="../exercises/procedure-template.js"></script>
+    <script src="../exercises/type-a.js"></script>
+    <script src="../exercises/type-b.js"></script>
+    <script>
+        const sessionId = localStorage.getItem('studentSessionId');
+        const studentUid = localStorage.getItem('studentUid');
+
+        let activitiesBank = [];
+        let assignedIds = [];
+        let currentIdx = 0;
+        let timerInstance = null;
+        let currentExObj = null;
+
+        if (!sessionId || !studentUid) window.location.href = 'join.html';
+
+        async function init() {
+            // 1. Fetch activity bank
+            const res = await fetch('../data/activities.json');
+            activitiesBank = await res.json();
+
+            // 2. Fetch session data
+            const session = await dbGet(`sessions/${sessionId}`);
+            if (!session || session.status === 'finished') {
+                window.location.href = 'locked.html';
+                return;
+            }
+
+            assignedIds = session.assignedActivities || [];
+            if (assignedIds.length === 0) {
+                showToast('Error: No se asignaron actividades', 'error');
+                return;
+            }
+
+            document.getElementById('idx-total').textContent = assignedIds.length;
+
+            // 3. Keep connection alive
+            await dbSet(`sessions/${sessionId}/students/${studentUid}/connected`, true);
+            db.ref(`sessions/${sessionId}/students/${studentUid}/connected`).onDisconnect().set(false);
+
+            // 4. Start timer
+            timerInstance = new SyncTimer({
+                sessionId,
+                onTick: ({ elapsed, remaining }) => {
+                    document.getElementById('top-timer').textContent = formatTime(remaining);
+                },
+                onStateChange: (state) => {
+                    const el = document.getElementById('top-timer');
+                    el.className = 'timer-display ' + (state !== 'safe' ? state : '');
+                },
+                onFinish: () => {
+                    saveAnswerOnTimeout();
+                    window.location.href = 'locked.html';
+                }
+            });
+            timerInstance.start();
+
+            // 5. Watch for global session changes (early finish)
+            dbListen(`sessions/${sessionId}/status`, (status) => {
+                if (status === 'finished') {
+                    saveAnswerOnTimeout();
+                    window.location.href = 'locked.html';
+                }
+            });
+
+            // 6. Find where student left off
+            const studentData = await dbGet(`sessions/${sessionId}/students/${studentUid}`);
+            currentIdx = studentData?.currentExercise || 0;
+
+            // Countdown if first exercise
+            if (currentIdx === 0 && !session.timer?.startedAt) {
+                // Technically timer should be started by teacher, wait
+            } else if (currentIdx === 0 && Date.now() - session.timer.startedAt < 5000) {
+                // Just started
+                showCountdown(() => loadExercise(currentIdx));
+            } else {
+                // Resuming
+                loadExercise(currentIdx);
+            }
+        }
+
+        function loadExercise(idx) {
+            if (idx >= assignedIds.length) {
+                // Finished all
+                renderFinishedAll();
+                return;
+            }
+
+            currentIdx = idx;
+            updateProgressUI(idx);
+
+            const actId = assignedIds[idx];
+            const activityData = activitiesBank[actId];
+            const container = document.getElementById('exercise-container');
+            container.innerHTML = ''; // clear
+
+            if (currentExObj) { currentExObj.destroy?.(); currentExObj = null; }
+
+            // Expose a save hook for Type B tangram partial saves
+            window._saveTangram = (tangramData) => {
+                saveTangramAttempt(sessionId, studentUid, currentIdx, tangramData);
+            };
+
+            if (activityData.type === 'B') {
+                fetch('../data/tangrams.json')
+                    .then(r => r.json())
+                    .then(bank => {
+                        currentExObj = new TypeBExercise(container, activityData, bank, () => {
+                            // point callback
+                        });
+                        // Type B auto-saves tangrams via window._saveTangram
+                        // It never "submits" to advance until timer expires
+                        // Hide progress info since it's a loop
+                        document.querySelector('.progress-wrap').style.display = 'none';
+                    });
+            } else {
+                // Type A standard
+                document.querySelector('.progress-wrap').style.display = 'block';
+                currentExObj = new TypeAExercise(container, activityData, async (answerData) => {
+                    showLoading();
+                    await submitExercise(sessionId, studentUid, currentIdx, answerData);
+                    loadExercise(currentIdx + 1);
+                });
+            }
+        }
+
+        function updateProgressUI(idx) {
+            document.getElementById('idx-current').textContent = Math.min(idx + 1, assignedIds.length);
+            const pct = Math.max(5, (idx / assignedIds.length) * 100);
+            document.getElementById('progress-fill').style.width = pct + '%';
+        }
+
+        function renderFinishedAll() {
+            const container = document.getElementById('exercise-container');
+            document.querySelector('.progress-wrap').style.display = 'none';
+            container.innerHTML = `
+        <div class="loading-wrap" style="color:var(--text-primary)">
+          <div style="font-size:4rem;margin-bottom:1rem"><i class="hgi-stroke hgi-flag-02"></i></div>
+          <h2>Has terminado todos los ejercicios</h2>
+          <p style="color:var(--text-secondary);max-width:300px;text-align:center">
+            Espera a que termine el tiempo para conocer los resultados junto a tu profesor.
+          </p>
+        </div>`;
+        }
+
+        function showLoading() {
+            const container = document.getElementById('exercise-container');
+            container.innerHTML = `
+        <div class="loading-wrap">
+          <div class="spinner"></div>
+          <p>Guardando…</p>
+        </div>`;
+        }
+
+        // Cleanup if timer runs out mid-exercise
+        async function saveAnswerOnTimeout() {
+            if (currentExObj && currentExObj instanceof TypeAExercise) {
+                // Partial save whatever they had
+                const procAns = currentExObj.proc?.getAnswer();
+                const { score, breakdown } = scoreTypeA(currentExObj.activity, currentExObj.selected, procAns);
+                await submitExercise(sessionId, studentUid, currentIdx, {
+                    answer: currentExObj.selected || '',
+                    procedure: procAns,
+                    score,
+                    breakdown,
+                    startedAt: currentExObj.startedAt,
+                    timeout: true
+                });
+            }
+        }
+
+        init();
+    </script>
+    <script src="../js/matrix-bg.js"></script>
+</body>
+
+</html>

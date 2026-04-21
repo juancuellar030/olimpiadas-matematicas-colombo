@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesor — Sesión en Vivo · Olimpiadas Matemáticas</title>
+    <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/theme.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar .brand {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .main {
+            flex: 1;
+            padding: 2rem 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        @media(max-width:900px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left sidebar */
+        .timer-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(20, 20, 50, 0.5) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-xl);
+            position: sticky;
+            top: 100px;
+        }
+
+        .timer-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .btn-end {
+            width: 100%;
+            margin-top: 2rem;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+
+        /* Grid */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-header h2 {
+            font-size: 2rem;
+        }
+
+        .student-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        }
+
+        /* Live Student Card */
+        .s-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all var(--transition);
+        }
+
+        .s-card.finished {
+            border-color: var(--orange);
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.15);
+        }
+
+        .s-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .s-school {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .s-status {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+        }
+
+        .status-play {
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--blue);
+        }
+
+        .status-done {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--green);
+        }
+
+        .status-offline {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+        }
+
+        .s-progress-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .s-progress-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .s-progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .s-progress-fill {
+            height: 100%;
+            background: var(--blue);
+            border-radius: 999px;
+            transition: width 0.4s;
+        }
+
+        .s-card.finished .s-progress-fill {
+            background: var(--green);
+        }
+
+        .s-tangram-stat {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem;
+            background: rgba(251, 191, 36, 0.1);
+            border-radius: var(--radius-sm);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-mesh"></div>
+
+    <header class="top-bar">
+        <div class="brand">Control de Olimpiada</div>
+        <div class="flex items-center gap-2">
+            <div class="pulse-dot"></div>
+            <span style="font-size:0.8rem;color:var(--green);margin-right:1rem;">Supervisando en vivo</span>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema"
+                style="position: relative; top: 0; right: 0; width: 36px; height: 36px; font-size: 1.2rem;">
+                <span class="icon-sun"><i class="hgi-stroke hgi-sun-03"></i></span>
+                <span class="icon-moon" style="display: none;"><i class="hgi-stroke hgi-moon-02"></i></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Left panel: Timer -->
+        <aside>
+            <div class="timer-card" id="timer-box">
+                <div class="timer-label">TIEMPO RESTANTE</div>
+                <div id="main-timer" class="timer-display" style="font-size:clamp(3rem,4vw,4rem)">--:--</div>
+
+                <button id="btn-end" class="btn btn-secondary btn-end">
+                    <i class="hgi-stroke hgi-square"></i> Finalizar Sesión
+                </button>
+            </div>
+        </aside>
+
+        <!-- Right panel: Students -->
+        <section>
+            <div class="dashboard-header">
+                <div>
+                    <h2>Panel de Progreso</h2>
+                    <p style="color:var(--text-secondary);font-size:0.95rem">Monitoreo en tiempo real de los colegios.
+                    </p>
+                </div>
+                <div style="font-size:0.9rem;color:var(--text-muted)">
+                    <span id="stud-count">0</span> colegios
+                </div>
+            </div>
+
+            <div class="student-grid" id="student-grid">
+                <div class="spinner" style="margin:2rem auto"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast-container"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/session-manager.js"></script>
+    <script src="../js/timer.js"></script>
+    <script>
+        const sessionId = localStorage.getItem('hostSessionId');
+        if (!sessionId) window.location.href = 'lobby.html';
+
+        let timerInstance = null;
+        let studentsMap = {};
+        let totalAssigned = 5;
+
+        async function init() {
+            const user = await waitForAuth();
+            if (!user) { window.location.href = 'lobby.html'; return; }
+
+            const session = await dbGet(`sessions/${sessionId}`);
+            if (!session) return;
+            if (session.status === 'finished') {
+                window.location.href = 'analytics.html';
+                return;
+            }
+
+            totalAssigned = session.assignedActivities ? session.assignedActivities.length : 5;
+
+            // Timer
+            timerInstance = new SyncTimer({
+                sessionId,
+                onTick: ({ elapsed, remaining }) => {
+                    document.getElementById('main-timer').textContent = formatTime(remaining);
+                },
+                onStateChange: (state) => {
+                    const t = document.getElementById('main-timer');
+                    t.className = 'timer-display ' + (state !== 'safe' ? state : '');
+                    const box = document.getElementById('timer-box');
+                    if (state === 'danger') {
+                        box.style.borderColor = 'rgba(233,69,96,0.5)';
+                        box.style.background = 'linear-gradient(135deg, rgba(233,69,96,0.1), rgba(20,20,50,0.5))';
+                    }
+                },
+                onFinish: () => {
+                    endSessionSync();
+                }
+            });
+            timerInstance.start();
+
+            // Live student tracking
+            dbListen(`sessions/${sessionId}/students`, (data) => {
+                studentsMap = data || {};
+                renderStudents();
+            });
+        }
+
+        function renderStudents() {
+            const grid = document.getElementById('student-grid');
+            const entries = Object.entries(studentsMap);
+            document.getElementById('stud-count').textContent = entries.length;
+
+            if (entries.length === 0) {
+                grid.innerHTML = '<p style="color:var(--text-muted)">No hay estudiantes conectados.</p>';
+                return;
+            }
+
+            grid.innerHTML = entries.map(([uid, s]) => {
+                const curEx = s.currentExercise || 0;
+                // Limit progress bar to math exercises, tangram is separate loop
+                const progressPct = Math.min(100, (curEx / (totalAssigned - 1)) * 100);
+                const isFinished = curEx >= totalAssigned;
+                const isOffline = s.connected === false;
+
+                let statusBadge = isFinished ? '<span class="s-status status-done">Terminado</span>'
+                    : isOffline ? '<span class="s-status status-offline">Desconectado</span>'
+                        : '<span class="s-status status-play">En progreso</span>';
+
+                // Tangram count
+                let tCount = 0;
+                const exercises = s.exercises || {};
+                Object.values(exercises).forEach(ex => {
+                    if (ex.tangrams?.count) tCount += ex.tangrams.count;
+                });
+
+                return `
+          <div class="s-card ${isFinished ? 'finished' : ''}">
+            <div class="s-header">
+              <div class="s-school">${escHtml(s.schoolName || 'Estudiante')}</div>
+              ${statusBadge}
+            </div>
+            
+            <div class="s-progress-wrap">
+              <div class="s-progress-label">
+                <span>Avance ejercicios matemáticos</span>
+                <span>${Math.min(curEx, totalAssigned - 1)}/${totalAssigned - 1}</span>
+              </div>
+              <div class="s-progress-bar">
+                <div class="s-progress-fill" style="width:${progressPct}%"></div>
+              </div>
+            </div>
+            
+            ${tCount > 0 ? `
+              <div class="s-tangram-stat">
+                <i class="hgi-stroke hgi-puzzle"></i> ${tCount} Tangrams completados
+              </div>
+            ` : ''}
+          </div>
+        `;
+            }).join('');
+        }
+
+        async function endSessionSync() {
+            document.getElementById('btn-end').disabled = true;
+            document.getElementById('btn-end').textContent = 'Finalizando…';
+            try {
+                await finishSession(sessionId);
+                // Add artificial delay before jumping to analytics
+                setTimeout(() => {
+                    window.location.href = 'analytics.html';
+                }, 1500);
+            } catch (e) {
+                showToast('Error finalizando sesión', 'error');
+                document.getElementById('btn-end').disabled = false;
+                document.getElementById('btn-end').innerHTML = '<i class="hgi-stroke hgi-square"></i> Finalizar Sesión';
+            }
+        }
+
+        document.getElementById('btn-end').addEventListener('click', () => {
+            if (confirm('¿Estás seguro de finalizar la Olimpiada para todos los colegios ahora mismo?')) {
+                endSessionSync();
+            }
+        });
+
+        function escHtml(str) { return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+        init();
+    </script>
+    <script src="../js/matrix-bg.js"></script>
+</body>
+
+</html>

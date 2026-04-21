@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unirse a Sesión · Olimpiadas Matemáticas</title>
+    <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/theme.js"></script>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .join-card {
+            width: 100%;
+            max-width: 440px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem 2rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .join-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .join-header .icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .join-header h2 {
+            margin-bottom: 0.25rem;
+        }
+
+        .join-header p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* Code input — large & prominent */
+        .code-input-wrap {
+            position: relative;
+        }
+
+        .code-input {
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            padding: 1rem;
+        }
+
+        .code-input::placeholder {
+            letter-spacing: 0.1em;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .btn-join {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            transition: color var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Loading state */
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 13, 26, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #loading-overlay.show {
+            display: flex;
+        }
+
+        #loading-overlay p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-mesh"></div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+        <span class="icon-sun"><i class="hgi-stroke hgi-sun-03"></i></span>
+        <span class="icon-moon" style="display: none;"><i class="hgi-stroke hgi-moon-02"></i></span>
+    </button>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <p id="loading-msg">Verificando código…</p>
+    </div>
+
+    <div class="join-card">
+        <div class="join-header">
+            <div class="icon"><i class="hgi-stroke hgi-user-education-01"></i></div>
+            <h2>Unirse a la Olimpiada</h2>
+            <p>Ingresa el código que te dio tu profesor y el nombre de tu colegio</p>
+        </div>
+
+        <form class="form" id="join-form" onsubmit="handleJoin(event)">
+            <div class="input-group">
+                <label for="code-input">Código de sesión</label>
+                <input type="text" id="code-input" class="input code-input" placeholder="ABC123" maxlength="6"
+                    autocomplete="off" autocorrect="off" spellcheck="false" required>
+            </div>
+
+            <div class="divider">y</div>
+
+            <div class="input-group">
+                <label for="school-input">Nombre del colegio</label>
+                <input type="text" id="school-input" class="input" placeholder="Ej: Colegio San José" maxlength="60"
+                    required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-join" id="btn-join">
+                Entrar a la sesión →
+            </button>
+        </form>
+
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/session-manager.js"></script>
+    <script>
+        // Auto-uppercase code input
+        document.getElementById('code-input').addEventListener('input', function () {
+            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        });
+
+        async function handleJoin(e) {
+            e.preventDefault();
+            const code = document.getElementById('code-input').value.trim();
+            const schoolName = document.getElementById('school-input').value.trim();
+
+            if (code.length < 6) {
+                showToast('El código debe tener 6 caracteres', 'error');
+                return;
+            }
+            if (!schoolName) {
+                showToast('Ingresa el nombre de tu colegio', 'error');
+                return;
+            }
+
+            showLoading('Verificando código…');
+
+            try {
+                const user = await waitForAuth() || await signInAnonymously();
+                showLoading('Uniéndote a la sesión…');
+
+                const { sessionId } = await joinSession(code, schoolName, user.uid);
+
+                showLoading('¡Listo! Entrando a la sala…');
+                setTimeout(() => {
+                    window.location.href = `waiting.html`;
+                }, 600);
+
+            } catch (err) {
+                hideLoading();
+                showToast(err.message || 'No se pudo unir a la sesión', 'error');
+            }
+        }
+
+        function showLoading(msg) {
+            document.getElementById('loading-msg').textContent = msg;
+            document.getElementById('loading-overlay').classList.add('show');
+            document.getElementById('btn-join').disabled = true;
+        }
+        function hideLoading() {
+            document.getElementById('loading-overlay').classList.remove('show');
+            document.getElementById('btn-join').disabled = false;
+        }
+
+        // Check for existing student session on load
+        async function init() {
+            const user = await waitForAuth();
+            if (user) {
+                const existing = await reconnectStudent();
+                if (existing) {
+                    const s = existing.session;
+                    if (s.status === 'active') {
+                        window.location.href = 'exercise.html';
+                        return;
+                    } else if (s.status === 'lobby') {
+                        window.location.href = 'waiting.html';
+                        return;
+                    }
+                }
+            }
+        }
+        init();
+    </script>
+    <script src="../js/matrix-bg.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión Finalizada · Olimpiadas Matemáticas</title>
+    <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/theme.js"></script>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .locked-card {
+            text-align: center;
+            max-width: 460px;
+            width: 100%;
+            padding: 3rem 2rem;
+        }
+
+        .lock-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .locked-card h2 {
+            margin-bottom: 0.75rem;
+        }
+
+        .locked-card p {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .confetti {
+            font-size: 2rem;
+            letter-spacing: 0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-mesh"></div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+        <span class="icon-sun"><i class="hgi-stroke hgi-sun-03"></i></span>
+        <span class="icon-moon" style="display: none;"><i class="hgi-stroke hgi-moon-02"></i></span>
+    </button>
+    <div class="card locked-card">
+        <div class="confetti"><i class="hgi-stroke hgi-party-01"></i> <i class="hgi-stroke hgi-trophy"></i></div>
+        <div class="lock-icon"><i class="hgi-stroke hgi-lock-02"></i></div>
+        <h2>¡Tiempo agotado!</h2>
+        <p>La sesión ha finalizado. <strong>¡Gracias por participar!</strong><br>
+            Tu puntaje será anunciado por tu profesor.</p>
+        <p style="margin-top:1.5rem;font-size:0.8rem;color:var(--text-muted)">
+            Puedes cerrar esta ventana.
+        </p>
+    </div>
+    <script src="../js/matrix-bg.js"></script>
+</body>
+
+</html>

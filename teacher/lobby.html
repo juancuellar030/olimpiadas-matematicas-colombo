@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesor — Sala de Espera · Olimpiadas Matemáticas</title>
+    <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/theme.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar .brand {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .main {
+            flex: 1;
+            padding: 2rem 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Code display */
+        .code-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(251, 191, 36, 0.08) 100%);
+            border: 1px solid rgba(249, 115, 22, 0.35);
+            border-radius: var(--radius-xl);
+        }
+
+        .code-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+        }
+
+        .code-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Students grid */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .student-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 0.7rem 1rem;
+            transition: all var(--transition);
+        }
+
+        .student-chip.connected {
+            border-color: rgba(16, 185, 129, 0.35);
+        }
+
+        .student-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .student-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        /* Empty state */
+        .empty-students {
+            text-align: center;
+            padding: 3rem 1rem;
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-lg);
+            color: var(--text-muted);
+        }
+
+        .empty-students .icon {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Bottom actions */
+        .bottom-bar {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .bottom-bar .info {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Layout */
+        .lobby-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media(max-width:700px) {
+            .lobby-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Duration picker */
+        .duration-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .duration-btn {
+            padding: 0.4rem 0.9rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .duration-btn.active {
+            border-color: var(--orange);
+            color: var(--orange);
+            background: rgba(249, 115, 22, 0.1);
+        }
+
+        #spinner-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-deep);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-mesh"></div>
+
+    <!-- Init spinner -->
+    <div id="spinner-screen">
+        <div class="spinner"></div>
+        <p style="color:var(--text-muted)">Iniciando sesión…</p>
+    </div>
+
+    <!-- Top bar -->
+    <header class="top-bar">
+        <div class="brand"><i class="hgi-stroke hgi-trophy"></i> Olimpiadas Matemáticas</div>
+        <div class="flex items-center gap-2">
+            <div class="pulse-dot"></div>
+            <span style="font-size:0.8rem;color:var(--green);margin-right:1rem;">En vivo</span>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema"
+                style="position: relative; top: 0; right: 0; width: 36px; height: 36px; font-size: 1.2rem;">
+                <span class="icon-sun"><i class="hgi-stroke hgi-sun-03"></i></span>
+                <span class="icon-moon" style="display: none;"><i class="hgi-stroke hgi-moon-02"></i></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main">
+        <div class="lobby-grid">
+            <!-- Code card -->
+            <div class="code-card">
+                <p class="code-label">CÓDIGO DE SESIÓN</p>
+                <div class="session-code mt-1" id="session-code">------</div>
+                <p class="code-hint">Los estudiantes ingresan este código en sus dispositivos</p>
+            </div>
+
+            <!-- Settings card -->
+            <div class="card">
+                <h4 style="margin-bottom:1rem"><i class="hgi-stroke hgi-clock-01"></i> Duración del cronómetro</h4>
+                <div class="duration-options" id="duration-options">
+                    <button class="duration-btn" data-val="900">15 min</button>
+                    <button class="duration-btn active" data-val="1800">30 min</button>
+                    <button class="duration-btn" data-val="2700">45 min</button>
+                    <button class="duration-btn" data-val="3600">60 min</button>
+                </div>
+                <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted)">
+                    El cronómetro inicia al presionar "Iniciar Olimpiada"
+                </p>
+
+                <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)">
+                    <h4 style="margin-bottom:0.5rem"><i class="hgi-stroke hgi-clipboard"></i> Actividades asignadas</h4>
+                    <div id="assigned-summary" style="font-size:0.875rem;color:var(--text-muted)">
+                        No has asignado actividades aún.
+                    </div>
+                    <a href="bank.html" id="btn-bank" class="btn btn-secondary btn-sm"
+                        style="margin-top:0.75rem;display:inline-flex">
+                        Seleccionar actividades →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Students list -->
+        <div class="section-header">
+            <h3>Estudiantes conectados <span id="student-count"
+                    style="color:var(--text-muted);font-weight:400;font-size:1rem">(0)</span></h3>
+        </div>
+
+        <div id="students-container">
+            <div class="empty-students">
+                <div class="icon"><i class="hgi-stroke hgi-user-education-01"></i></div>
+                <p>Esperando que los estudiantes se unan…</p>
+                <p style="font-size:0.8rem;margin-top:0.25rem">Comparte el código de sesión</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom action bar -->
+    <footer class="bottom-bar">
+        <div class="info" id="bottom-info">Esperando estudiantes…</div>
+        <div class="flex gap-2">
+            <a href="../index.html" class="btn btn-secondary btn-sm">Cancelar</a>
+            <button id="btn-start" class="btn btn-primary btn-lg" disabled>
+                <i class="hgi-stroke hgi-rocket-02"></i> Iniciar Olimpiada
+            </button>
+        </div>
+    </footer>
+
+    <div id="toast-container"></div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/session-manager.js"></script>
+    <script>
+        let sessionId = null;
+        let selectedDuration = 1800;
+        let assignedActivities = null;
+        let studentsMap = {};
+
+        // ── Duration picker ──────────────────────────────────────
+        document.querySelectorAll('.duration-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.duration-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedDuration = parseInt(btn.dataset.val);
+            });
+        });
+
+        // ── Init ─────────────────────────────────────────────────
+        async function init() {
+            try {
+                const user = await waitForAuth() || await signInAnonymously();
+
+                // Check for existing session
+                const existing = await reconnectTeacher();
+                if (existing && existing.data.status === 'lobby') {
+                    sessionId = existing.sessionId;
+                    document.getElementById('session-code').textContent = existing.code;
+                    // load assigned activities
+                    if (existing.data.assignedActivities) {
+                        assignedActivities = existing.data.assignedActivities;
+                        updateAssignedSummary();
+                    }
+                } else {
+                    // Create new session
+                    const result = await createSession(user.uid);
+                    sessionId = result.sessionId;
+                    document.getElementById('session-code').textContent = result.code;
+                }
+
+                document.getElementById('spinner-screen').style.display = 'none';
+                listenToStudents();
+                listenToSession();
+
+            } catch (err) {
+                console.error(err);
+                showToast(err.message || 'Error al iniciar sesión', 'error');
+                document.getElementById('spinner-screen').style.display = 'none';
+            }
+        }
+
+        // ── Listen to students joining ───────────────────────────
+        function listenToStudents() {
+            dbListen(`sessions/${sessionId}/students`, (students) => {
+                studentsMap = students || {};
+                renderStudents();
+            });
+        }
+
+        function renderStudents() {
+            const container = document.getElementById('students-container');
+            const entries = Object.entries(studentsMap);
+
+            document.getElementById('student-count').textContent = `(${entries.length})`;
+
+            if (entries.length === 0) {
+                container.innerHTML = `
+          <div class="empty-students">
+            <div class="icon"><i class="hgi-stroke hgi-user-education-01"></i></div>
+            <p>Esperando que los estudiantes se unan…</p>
+            <p style="font-size:0.8rem;margin-top:0.25rem">Comparte el código de sesión</p>
+          </div>`;
+                updateStartBtn(false);
+                return;
+            }
+
+            container.innerHTML = `<div class="students-grid">${entries.map(([uid, s]) => `
+          <div class="student-chip ${s.connected !== false ? 'connected' : ''}">
+            <div class="student-avatar">${s.schoolName?.charAt(0).toUpperCase() || '?'}</div>
+            <div>
+              <div class="student-name">${escHtml(s.schoolName || 'Estudiante')}</div>
+              <div style="font-size:0.7rem;color:${s.connected !== false ? 'var(--green)' : 'var(--text-muted)'}">
+                ${s.connected !== false ? '● Conectado' : '○ Desconectado'}
+              </div>
+            </div>
+          </div>`).join('')
+                }</div>`;
+
+            updateStartBtn(entries.length > 0 && !!assignedActivities);
+            document.getElementById('bottom-info').textContent =
+                `${entries.length} estudiante${entries.length !== 1 ? 's' : ''} conectado${entries.length !== 1 ? 's' : ''}`;
+        }
+
+        function updateStartBtn(enabled) {
+            document.getElementById('btn-start').disabled = !enabled;
+        }
+
+        // ── Listen to session changes (e.g., activities assigned via bank page) ──
+        function listenToSession() {
+            dbListen(`sessions/${sessionId}`, (data) => {
+                if (!data) return;
+                if (data.assignedActivities) {
+                    assignedActivities = data.assignedActivities;
+                    updateAssignedSummary();
+                    updateStartBtn(Object.keys(studentsMap).length > 0);
+                }
+                // If session already active (reconnect scenario) → go to session page
+                if (data.status === 'active') {
+                    window.location.href = 'session.html';
+                }
+            });
+        }
+
+        function updateAssignedSummary() {
+            if (!assignedActivities || assignedActivities.length === 0) return;
+            document.getElementById('assigned-summary').innerHTML =
+                `<span style="color:var(--green)"><i class="hgi-stroke hgi-tick-02"></i> ${assignedActivities.length} actividades seleccionadas</span>`;
+            document.getElementById('btn-bank').textContent = 'Cambiar selección →';
+        }
+
+        // Store sessionId for bank page
+        function saveSessionForBank() {
+            localStorage.setItem('hostBankSessionId', sessionId);
+        }
+        document.getElementById('btn-bank').addEventListener('click', (e) => {
+            saveSessionForBank();
+        });
+
+        // ── Start session ────────────────────────────────────────
+        document.getElementById('btn-start').addEventListener('click', async () => {
+            if (!assignedActivities) {
+                showToast('Primero debes seleccionar las actividades', 'error');
+                return;
+            }
+            const btn = document.getElementById('btn-start');
+            btn.disabled = true;
+            btn.textContent = 'Iniciando…';
+            try {
+                await startSession(sessionId, selectedDuration);
+                window.location.href = 'session.html';
+            } catch (err) {
+                showToast(err.message, 'error');
+                btn.disabled = false;
+                btn.textContent = '🚀 Iniciar Olimpiada';
+            }
+        });
+
+        function escHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        init();
+    </script>
+    <script src="../js/matrix-bg.js"></script>
+</body>
+
+</html>

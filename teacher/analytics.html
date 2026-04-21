@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Globales · Olimpiadas Matemáticas</title>
+    <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/theme.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar .brand {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .main {
+            flex: 1;
+            padding: 2rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header-block {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header-block h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .header-block p {
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Leaderboard Table */
+        .table-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .analytics-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .analytics-table th {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.25rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .analytics-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+
+        .analytics-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .analytics-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Ranks */
+        .rank-cell {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            font-weight: 800;
+            width: 60px;
+            text-align: center;
+        }
+
+        .rank-1 {
+            color: #fbbf24;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+        }
+
+        .rank-2 {
+            color: #94a3b8;
+        }
+
+        .rank-3 {
+            color: #b45309;
+        }
+
+        .school-cell {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .score-cell {
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .breakdown-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            margin-right: 0.4rem;
+        }
+
+        /* Detailed accordion */
+        .detail-btn {
+            background: transparent;
+            border: none;
+            color: var(--blue);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            outline: none;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--bg-deep);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-card);
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .ex-detail-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .ex-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.75rem;
+        }
+
+        .info-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-val {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .correct-val {
+            color: var(--green);
+        }
+
+        .incorrect-val {
+            color: var(--red);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-mesh"></div>
+
+    <header class="top-bar">
+        <div class="brand">Resultados Olimpiada</div>
+        <div class="flex items-center gap-2">
+            <button class="btn btn-secondary btn-sm" onclick="window.print()"><i class="hgi-stroke hgi-printer-01"></i>
+                Imprimir</button>
+            <button class="btn btn-primary btn-sm" onclick="exitToLobby()"><i class="hgi-stroke hgi-arrow-left-01"></i>
+                Inicio</button>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema"
+                style="position: relative; top: 0; right: 0; width: 36px; height: 36px; font-size: 1.2rem; margin-left:1rem;">
+                <span class="icon-sun"><i class="hgi-stroke hgi-sun-03"></i></span>
+                <span class="icon-moon" style="display: none;"><i class="hgi-stroke hgi-moon-02"></i></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="header-block">
+            <div class="badge badge-orange" style="margin-bottom:1rem">SESIÓN FINALIZADA</div>
+            <h1>Clasificación Final</h1>
+            <p>Tabla global de puntuaciones y desglose analítico de los colegios participantes.</p>
+        </div>
+
+        <div class="table-card">
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th width="80">Puesto</th>
+                        <th>Colegio</th>
+                        <th>Puntaje Total</th>
+                        <th>Desglose</th>
+                        <th width="120">Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    <tr>
+                        <td colspan="5" style="text-align:center;padding:3rem">Cargando resultados...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detail-modal">
+        <div class="modal-content">
+            <div class="detail-header">
+                <h2 id="modal-title">Detalle del Colegio</h2>
+                <button class="btn btn-secondary btn-sm" onclick="closeModal()">Cerrar ✕</button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/session-manager.js"></script>
+    <script src="../js/scoring.js"></script>
+    <script>
+        const sessionId = localStorage.getItem('hostSessionId');
+        if (!sessionId) window.location.href = 'lobby.html';
+
+        let globalAnalytics = [];
+
+        async function init() {
+            const res = await fetch('../data/activities.json');
+            const activitiesBank = await res.json();
+
+            const sessionData = await getSessionAnalytics(sessionId);
+            if (!sessionData) return;
+
+            const assignedIds = sessionData.assignedActivities || [];
+            const studentsMap = sessionData.students || {};
+
+            // Build rich analytics array
+            const arr = Object.values(studentsMap).map(sData =>
+                buildStudentAnalytics(sData, assignedIds, activitiesBank)
+            );
+
+            // Sort by total score descending
+            arr.sort((a, b) => b.totalScore - a.totalScore);
+            globalAnalytics = arr;
+
+            renderLeaderboard(arr);
+        }
+
+        function renderLeaderboard(data) {
+            const tbody = document.getElementById('leaderboard-body');
+
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center">No hay datos de estudiantes.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = data.map((student, i) => {
+                const rank = i + 1;
+                const rankClass = rank <= 3 ? `rank-${rank}` : '';
+                const rankDisplay = rank === 1 ? '<i class="hgi-stroke hgi-badge-01"></i>' : rank === 2 ? '<i class="hgi-stroke hgi-medal-02"></i>' : rank === 3 ? '<i class="hgi-stroke hgi-medal-03"></i>' : rank;
+
+                // Calc breakdowns (math vs tangram points)
+                let mathPoints = 0; let tangramPoints = 0;
+                student.exercises.forEach(ex => {
+                    if (ex.type === 'A') mathPoints += ex.score;
+                    if (ex.type === 'B') tangramPoints += ex.score;
+                });
+
+                return `
+          <tr>
+            <td class="rank-cell ${rankClass}">${rankDisplay}</td>
+            <td class="school-cell">${escHtml(student.schoolName)}</td>
+            <td class="score-cell">${student.totalScore} <span style="font-size:0.8rem;color:var(--text-muted)">pts</span></td>
+            <td>
+              <span class="breakdown-pill"><i class="hgi-stroke hgi-math"></i> Matemáticas: ${mathPoints}</span>
+              <span class="breakdown-pill"><i class="hgi-stroke hgi-puzzle"></i> Tangrams: ${tangramPoints}</span>
+            </td>
+            <td>
+              <button class="detail-btn" onclick="openModal(${i})">Ver análisis</button>
+            </td>
+          </tr>
+        `;
+            }).join('');
+        }
+
+        function openModal(idx) {
+            const s = globalAnalytics[idx];
+            document.getElementById('modal-title').textContent = s.schoolName;
+
+            const html = s.exercises.map(ex => {
+                if (ex.type === 'A') {
+                    const ansCls = ex.isCorrect ? 'correct-val' : 'incorrect-val';
+                    return `
+            <div class="ex-detail-card">
+              <h4 style="margin-bottom:0.5rem">${ex.title}</h4>
+              <div class="badge badge-blue" style="margin-bottom:1rem">Tipo A</div>
+              <div class="ex-detail-grid">
+                <div class="info-box">
+                  <div class="info-label">Respuesta Estudiante vs Correcta</div>
+                  <div class="info-val ${ansCls}">${ex.answer} <span style="color:var(--text-muted);font-weight:400;margin:0 4px">/</span> ${ex.correctAnswer}</div>
+                </div>
+                <div class="info-box">
+                  <div class="info-label">Puntaje Obtenido</div>
+                  <div class="info-val" style="color:var(--gold)">+${ex.score} pts</div>
+                </div>
+                <div class="info-box">
+                  <div class="info-label">Tiempo Empleado</div>
+                  <div class="info-val">${ex.timeSpent ? formatTime(ex.timeSpent) : '--:--'}</div>
+                </div>
+                <div class="info-box">
+                  <div class="info-label">Procedimiento Evaluado</div>
+                  <div class="info-val" style="font-size:0.85rem;color:var(--text-secondary)">
+                    ${ex.procedure ? (ex.procedure.result ? `Res: ${ex.procedure.result}` : 'Parcial') : 'No registrado'}
+                  </div>
+                </div>
+              </div>
+            </div>`;
+                } else {
+                    // Tangram
+                    const count = ex.tangrams?.count || 0;
+                    return `
+            <div class="ex-detail-card" style="border-color:rgba(16,185,129,0.3); background:rgba(16,185,129,0.05)">
+              <h4 style="margin-bottom:0.5rem">${ex.title}</h4>
+              <div class="badge badge-green" style="margin-bottom:1rem">Tangram Espacial</div>
+              <div class="ex-detail-grid">
+                <div class="info-box">
+                  <div class="info-label">Figuras Completadas</div>
+                  <div class="info-val" style="color:var(--green)">${count} figuras</div>
+                </div>
+                <div class="info-box">
+                  <div class="info-label">Puntaje Obtenido</div>
+                  <div class="info-val" style="color:var(--gold)">+${ex.score} pts</div>
+                </div>
+              </div>
+            </div>`;
+                }
+            }).join('');
+
+            document.getElementById('modal-body').innerHTML = html;
+            document.getElementById('detail-modal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.remove('show');
+        }
+
+        function exitToLobby() {
+            localStorage.removeItem('hostSessionId');
+            window.location.href = '../index.html';
+        }
+
+        function formatTime(s) {
+            if (isNaN(s)) return '00:00';
+            const m = Math.floor(s / 60); const sec = Math.floor(s % 60);
+            return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+        }
+
+        function escHtml(str) { return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+        init();
+    </script>
+    <script src="../js/matrix-bg.js"></script>
+</body>
+
+</html>

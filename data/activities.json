@@ -1,0 +1,419 @@
+[
+  {
+    "id": 1,
+    "type": "A",
+    "title": "Ejercicio 1",
+    "question": "En la granja del colegio hay 152 gallinas y 89 patos. ¿Cuántas aves hay en total?",
+    "options": ["A: 241 aves", "B: 231 aves", "C: 251 aves", "D: 63 aves"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 152},
+        {"type": "op"},
+        {"type": "number", "value": 89}
+      ],
+      "correctResult": 241
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 2,
+    "type": "A",
+    "title": "Ejercicio 2",
+    "question": "Mateo tenía 500 canicas. Perdió 135 jugando con sus amigos. ¿Cuántas canicas le quedan?",
+    "options": ["A: 435", "B: 365", "C: 375", "D: 265"],
+    "correctAnswer": "B",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 500},
+        {"type": "op"},
+        {"type": "number", "value": 135}
+      ],
+      "correctResult": 365
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 3,
+    "type": "A",
+    "title": "Ejercicio 3",
+    "question": "Una fábrica produce 45 cajas de juguetes por hora. ¿Cuántas cajas producirá en 8 horas de trabajo continuo?",
+    "options": ["A: 320", "B: 360", "C: 400", "D: 340"],
+    "correctAnswer": "B",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 45},
+        {"type": "op"},
+        {"type": "number", "value": 8}
+      ],
+      "correctResult": 360
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 4,
+    "type": "B",
+    "title": "Tangram 1",
+    "question": "Arma el reto interactivo utilizando las piezas para llenar la silueta",
+    "options": [],
+    "correctAnswer": "-",
+    "procedure": null,
+    "maxPoints": 5
+  },
+  {
+    "id": 5,
+    "type": "A",
+    "title": "Ejercicio 5",
+    "question": "Si queremos repartir 1,250 manzanas en cajas de 25 manzanas cada una, ¿cuántas cajas necesitaremos?",
+    "options": ["A: 50", "B: 60", "C: 45", "D: 55"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 1250},
+        {"type": "op"},
+        {"type": "number", "value": 25}
+      ],
+      "correctResult": 50
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 6,
+    "type": "A",
+    "title": "Ejercicio 6",
+    "question": "El perímetro de un cuadrado es de 24 metros, ¿cuánto mide cada lado?",
+    "options": ["A: 4 m", "B: 12 m", "C: 6 m", "D: 8 m"],
+    "correctAnswer": "C",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 24},
+        {"type": "op"},
+        {"type": "number", "value": 4}
+      ],
+      "correctResult": 6
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 7,
+    "type": "A",
+    "title": "Ejercicio 7",
+    "question": "¿Cuál es el resultado de 12 × 15 + 4?",
+    "options": ["A: 184", "B: 180", "C: 174", "D: 228"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 180},
+        {"type": "op"},
+        {"type": "number", "value": 4}
+      ],
+      "correctResult": 184
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 8,
+    "type": "B",
+    "title": "Tangram 2",
+    "question": "Crea el segundo reto Tangram para demostrar tu agilidad espacial.",
+    "options": [],
+    "correctAnswer": "-",
+    "procedure": null,
+    "maxPoints": 5
+  },
+  {
+    "id": 9,
+    "type": "A",
+    "title": "Ejercicio 9",
+    "question": "Un camión transporta 345 cajas de leche y 210 cajas de jugo. ¿Cuántas cajas lleva en total?",
+    "options": ["A: 555", "B: 545", "C: 655", "D: 455"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 345},
+        {"type": "op"},
+        {"type": "number", "value": 210}
+      ],
+      "correctResult": 555
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 10,
+    "type": "A",
+    "title": "Ejercicio 10",
+    "question": "¿Cuánto es el triple de 45 menos 10?",
+    "options": ["A: 135", "B: 115", "C: 125", "D: 145"],
+    "correctAnswer": "C",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 135},
+        {"type": "op"},
+        {"type": "number", "value": 10}
+      ],
+      "correctResult": 125
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 11,
+    "type": "A",
+    "title": "Ejercicio 11",
+    "question": "Si compras 4 libras de pan a $3.50 cada una y pagas con un billete de $20, ¿cuánto es tu vuelto?",
+    "options": ["A: $6.00", "B: $5.00", "C: $4.50", "D: $7.00"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 20},
+        {"type": "op"},
+        {"type": "number", "value": 14}
+      ],
+      "correctResult": 6
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 12,
+    "type": "B",
+    "title": "Tangram 3",
+    "question": "Arma el reto interactivo utilizando las piezas para llenar la silueta",
+    "options": [],
+    "correctAnswer": "-",
+    "procedure": null,
+    "maxPoints": 5
+  },
+  {
+    "id": 13,
+    "type": "A",
+    "title": "Ejercicio 13",
+    "question": "Encuentra la diferencia entre 10,000 y 3,456",
+    "options": ["A: 6,444", "B: 6,554", "C: 6,544", "D: 7,544"],
+    "correctAnswer": "C",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 10000},
+        {"type": "op"},
+        {"type": "number", "value": 3456}
+      ],
+      "correctResult": 6544
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 14,
+    "type": "A",
+    "title": "Ejercicio 14",
+    "question": "Multiplica 87 por 14.",
+    "options": ["A: 1,118", "B: 1,218", "C: 1,318", "D: 1,208"],
+    "correctAnswer": "B",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 87},
+        {"type": "op"},
+        {"type": "number", "value": 14}
+      ],
+      "correctResult": 1218
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 15,
+    "type": "A",
+    "title": "Ejercicio 15",
+    "question": "¿Cuál es la mitad de 6,482?",
+    "options": ["A: 3,246", "B: 3,241", "C: 3,244", "D: 3,141"],
+    "correctAnswer": "B",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 6482},
+        {"type": "op"},
+        {"type": "number", "value": 2}
+      ],
+      "correctResult": 3241
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 16,
+    "type": "B",
+    "title": "Tangram 4",
+    "question": "Arma el reto interactivo utilizando las piezas para llenar la silueta",
+    "options": [],
+    "correctAnswer": "-",
+    "procedure": null,
+    "maxPoints": 5
+  },
+  {
+    "id": 17,
+    "type": "A",
+    "title": "Ejercicio 17",
+    "question": "¿Si un cuarto tiene 4 paredes, cuantas paredes tienen 12 cuartos?",
+    "options": ["A: 24", "B: 36", "C: 48", "D: 16"],
+    "correctAnswer": "C",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 4},
+        {"type": "op"},
+        {"type": "number", "value": 12}
+      ],
+      "correctResult": 48
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 18,
+    "type": "A",
+    "title": "Ejercicio 18",
+    "question": "Un tanque de gasolina tiene capacidad para 45 galones. Si ya se han gastado 18 galones, ¿cuántos quedan?",
+    "options": ["A: 27", "B: 28", "C: 37", "D: 17"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 45},
+        {"type": "op"},
+        {"type": "number", "value": 18}
+      ],
+      "correctResult": 27
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 19,
+    "type": "A",
+    "title": "Ejercicio 19",
+    "question": "¿Cuánto es 9 elevado al cuadrado?",
+    "options": ["A: 81", "B: 18", "C: 72", "D: 82"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 9},
+        {"type": "op"},
+        {"type": "number", "value": 9}
+      ],
+      "correctResult": 81
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 20,
+    "type": "B",
+    "title": "Tangram 5",
+    "question": "Arma el reto interactivo utilizando las piezas para llenar la silueta",
+    "options": [],
+    "correctAnswer": "-",
+    "procedure": null,
+    "maxPoints": 5
+  },
+  {
+    "id": 21,
+    "type": "A",
+    "title": "Ejercicio 21",
+    "question": "Una persona corre 5 km diarios. ¿Cuántos kilómetros correrá en todo el mes de mayo?",
+    "options": ["A: 155", "B: 150", "C: 145", "D: 160"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 5},
+        {"type": "op"},
+        {"type": "number", "value": 31}
+      ],
+      "correctResult": 155
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 22,
+    "type": "A",
+    "title": "Ejercicio 22",
+    "question": "Un álbum tiene 305 cartas. Tienes 149. ¿Cuántas cartas te faltan?",
+    "options": ["A: 156", "B: 155", "C: 166", "D: 146"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 305},
+        {"type": "op"},
+        {"type": "number", "value": 149}
+      ],
+      "correctResult": 156
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 23,
+    "type": "A",
+    "title": "Ejercicio 23",
+    "question": "Si Juan ahorra $2 cada semana, ¿cuánto habrá ahorrado al cabo de un año y medio (78 semanas)?",
+    "options": ["A: $156", "B: $146", "C: $166", "D: $152"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 2},
+        {"type": "op"},
+        {"type": "number", "value": 78}
+      ],
+      "correctResult": 156
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 24,
+    "type": "B",
+    "title": "Tangram 6",
+    "question": "Arma el reto interactivo utilizando las piezas para llenar la silueta",
+    "options": [],
+    "correctAnswer": "-",
+    "procedure": null,
+    "maxPoints": 5
+  },
+  {
+    "id": 25,
+    "type": "A",
+    "title": "Ejercicio 25",
+    "question": "Encuentra la suma de los primeros 5 números pares (empezando del 2)",
+    "options": ["A: 30", "B: 20", "C: 40", "D: 25"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 20},
+        {"type": "op"},
+        {"type": "number", "value": 10}
+      ],
+      "correctResult": 30
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 26,
+    "type": "A",
+    "title": "Ejercicio 26",
+    "question": "¿Cuál es un tercio de 270?",
+    "options": ["A: 90", "B: 80", "C: 100", "D: 70"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 270},
+        {"type": "op"},
+        {"type": "number", "value": 3}
+      ],
+      "correctResult": 90
+    },
+    "maxPoints": 2
+  },
+  {
+    "id": 27,
+    "type": "A",
+    "title": "Ejercicio 27",
+    "question": "¿Cuál es la raíz cuadrada de 144 más 5?",
+    "options": ["A: 17", "B: 18", "C: 19", "D: 16"],
+    "correctAnswer": "A",
+    "procedure": {
+      "template": [
+        {"type": "number", "value": 12},
+        {"type": "op"},
+        {"type": "number", "value": 5}
+      ],
+      "correctResult": 17
+    },
+    "maxPoints": 2
+  }
+]
