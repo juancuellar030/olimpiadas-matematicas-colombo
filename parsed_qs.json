@@ -1,0 +1,811 @@
+[
+  {
+    "q": "78. Una evaluación de inglés de un colegio tiene dos pruebas, una de escritura y otra de conversación. La evaluación se aprueba si la suma de los puntos obtenidos en las dos pruebas es mayor que 60. Las gráficas muestran los resultados de las pruebas de Diana, Alex y Sergio. En la prueba de conversación:",
+    "options": [
+      "A.  Diana obtuvo más puntos que Sergio.",
+      "B.  Sergio obtuvo más puntos que Alex.",
+      "C.  Diana obtuvo más puntos que Alex.",
+      "D.  Sergio obtuvo más puntos que Diana."
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "79. Un edificio tiene cuatro pisos. La altura del primer piso es 4 metros. Los otros tres pisos tienen cada uno 3 metros de altura.  ¿Cuál es la altura del edificio?",
+    "options": [
+      "A.  11 metros.",
+      "B.  13 metros.",
+      "C.  12 metros.",
+      "D.  14 metros."
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "80. Una cuadrícula de papel de 5×5 como la que se muestra se quiere cortar de manera que se obtengan piezas iguales a la que se muestra al lado de la cuadrícula. ¿Cuál es el mayor número de piezas que se pueden obtener?",
+    "options": [
+      "B.",
+      "C.",
+      "D."
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "76. Marisol tiene 9 rectángulos iguales, con los que forma el rectángulo más grande que se muestra en la figura. Si el lado mayor de cada uno de los rectángulos pequeños mide 10 cm. ¿Cuál es el perímetro del rectángulo más grande?",
+    "options": [
+      "A. 40 cm",
+      "B. 48 cm",
+      "C. 76 cm",
+      "D. 81 cm"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "77. Pepe tiene el doble de canicas que Luis y entre los dos reúnen 30 canicas. ¿Cuántas canicas tiene Pepe y cuántas tiene Luis?",
+    "options": [
+      "A.  Pepe tiene 20 canica y Luis tiene 10 canicas",
+      "B.  Pepe tiene 15 canicas y Luis tiene 5 canicas.",
+      "C.  Pepe tiene 20 canicas y Luis tiene 5 canicas.",
+      "D.  Pepe tiene 60 canicas y Luis tiene 30 canicas.",
+      "A. 1.600 + 1.400 + 750",
+      "B. 2 x (1.600 + 1.400 +750",
+      "C. (2 x 1.400) + (2 x 750) + 1600",
+      "D.  2 + 1.600 + 2 + 1.400 + 1 + 750"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "74. Cinco hermanos que están decorando su casa para una fiesta compraron 2 docenas de globos para colocarlos en el techo y las paredes. Mario colocó 2 globos, Lucía 5, Francisco 1, Verónica 6 y Diana 4.  ¿Cuántos globos faltan por colocar?",
+    "options": [
+      "A. 2",
+      "B. 24",
+      "C. 20",
+      "D. 6"
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "75. Un bloque de 16 cubos está formado por 4 piezas de 4 cubos cada una: una negra, una gris oscuro, una gris claro y una blanca, como se ve en la figura. ¿Qué forma tiene la blanca?",
+    "options": [
+      "A."
+    ],
+    "answer": ""
+  },
+  {
+    "q": "71. Lorena tiene las cuatro piezas grises que se muestran en la figura y con ellas cubre totalmente la forma que está al lado de las piezas. ¿Dónde debe poner la ficha          ?",
+    "options": [
+      "A.",
+      "B.",
+      "C.",
+      "D."
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "72. La clase de español duró 50 minutos y empezó a las 12:40 horas. Exactamente a la mitad de la clase nos visitó en el salón el Director de la escuela. ¿A qué hora fue eso?",
+    "options": [
+      "A. 1:05 pm",
+      "B. 12:40 pm",
+      "C. 12:55 pm",
+      "D. 1:30 pm"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "73. Sandra compró flores para armar un ramo con 2 girasoles, 2 claveles y 1 rosa. Estos son los precios de cada flor: ¿Qué tienen en común los tres acuarios?",
+    "options": [
+      "A. Una cara de 20 cm x 20 cm.",
+      "B. Una cara de 20 cm x 10 cm.",
+      "C. Una cara de 10 cm x 10 cm.",
+      "D. Caras cuadradas iguales."
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "70. Un cuadrado se cortó en 4 partes, como se muestra en la figura. ¿Cuál de las siguientes formas no puede construir usando las cuatro piezas?",
+    "options": [
+      "A.",
+      "B.",
+      "C.",
+      "D."
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "67. ¿Cuánta capacidad tienen en total los siguientes vasos de agua?",
+    "options": [
+      "A. 2 L",
+      "B. 2,5 L",
+      "C. 3,5 L",
+      "D. 0,5 L"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "68. La siguiente figura representa una caja. En la figura se señalan las dimensiones de la caja. ¿Cuál de los siguientes procedimientos permite hallar el volumen de la caja?",
+    "options": [
+      "A. Sumar el largo, el ancho y el alto de la caja.",
+      "B. Multiplicar por 3 el alto de la caja.",
+      "C. Multiplicar el largo por el ancho y por el alto.",
+      "D. Sumar el largo con el ancho, y multiplicar por el alto."
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "69. En  una  tienda  se  venden  acuarios  con  forma  y  tamaño  como  los  que  muestra  la figura.",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "q": "64. Adriana practica 1 ½ horas en bicicleta el lunes, 2 ¼ hora de natación el martes, 1 ¼ gimnasia el miércoles. El jueves y viernes descansa. ¿Cuántas horas semanales le dedica Adriana al deporte?",
+    "options": [
+      "A.  4 horas",
+      "B.  5 horas",
+      "C.  7 horas",
+      "D.  10 horas"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "65. El ajedrez se juega con 32 fichas, la mitad son blancas y la otra mitad son negras. De cada color hay ocho peones, dos torres, dos alfiles, dos caballos, la reina y el rey. ¿Cuál es la probabilidad de que al escoger una ficha al azar se elija un caballo? 1",
+    "options": [
+      "A.",
+      "B.",
+      "C.",
+      "D."
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "66. Calcula  el número de árboles  que  se  pueden plantar en un campo  como  el de la figura, de 32 m de largo y 30 m de ancho, si cada árbol necesita para desarrollarse 4푚2",
+    "options": [
+      "A.  240",
+      "B.  960",
+      "C.  248",
+      "D.  140",
+      "A.  2 triángulos isósceles, 3 triángulos escalenos y 3 triángulos rectángulos.",
+      "B.  1 isósceles 2 triángulos escalenos y 4 triángulos rectángulos.",
+      "C.   2 triángulos isósceles, 6 triángulos escalenos y 3 triángulos rectángulos.",
+      "D.  1 triángulo isósceles, 6 triángulos escalenos y 4 triángulos rectángulos."
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "62. Cecilia  gasto  dos  cuartos  de  hora  en  hacer  un  recorrido,  mientras  que  Hernando utilizo un medio de ese tiempo. ¿Cuánto tiempo utilizó Hernando?",
+    "options": [
+      "A.  Hernando gasto un cuarto de hora.",
+      "B.  Hernando gasto dos cuartos de hora.",
+      "C.  Hernando gastó tres sextos de hora.",
+      "D.  Hernando gastó media hora."
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "63. Luis dio cuatro vueltas alrededor de una pista de atletismo.  El tiempo que él empleó en dar cada vuelta se muestra a continuación. El tiempo total que empleo Luis en dar las cuatro vueltas alrededor de la pista fue de:",
+    "options": [
+      "A.16 minutos",
+      "B.16 minutos y 30 segundos",
+      "C.17 minutos",
+      "D.18 minutos y 15 segundos",
+      "A. 50 metros al oriente y 150 metros al norte.",
+      "B. 200 metros al oriente y 100 metros al norte.",
+      "C. 100 metros al oriente y 50 metros al norte.",
+      "D. 250 metros al oriente y 200 metros al norte."
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "60. Juan tiene 321 fichas ¿Cuánta decenas de fichas tiene Juan?",
+    "options": [
+      "A. 3",
+      "B. 21",
+      "C. 32",
+      "D. 321"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "61. Patricia quiere elaborar un vitral utilizando triángulos. ¿Cuántos triángulos isósceles, escalenos y rectángulos utilizará en la elaboración del vitral?",
+    "options": [
+      "A.  81 días",
+      "B.  22 días",
+      "C.  31 días",
+      "D.  95 días"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "57. En una banda compuesta por un baterista, un guitarrista, un bajista y un saxofonista, el baterista toca en lapsos de 8 tiempos, el guitarrista en 12 tiempos, el bajista en 6 tiempos y el saxofonista en 16 tiempos. Si todos empiezan al mismo tiempo, ¿en cuántos tiempos sus periodos volverán a iniciar al mismo tiempo?",
+    "options": [
+      "A.  38 tiempos",
+      "B.  12 tiempos",
+      "C.  48 tiempos",
+      "D.  58 tiempos"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "58. ¿Cuántos ángulos rectos se forman en los cuatro números del reloj digital?",
+    "options": [
+      "A.  10 ángulos rectos",
+      "B.  15 ángulos rectos",
+      "C.  13 ángulos rectos",
+      "D.  18 ángulos rectos"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "59. La siguiente gráfica muestra la ubicación de diferentes atracciones de un parque de diversiones.",
+    "options": [
+      "B. 14 flanes",
+      "C. 92 flanes",
+      "D. 84 flanes"
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "53. La suma de tres números consecutivos es 54. ¿Cuál de las siguientes opciones es la correcta?",
+    "options": [
+      "A.17, 18 y 19",
+      "B.16, 17 y 18",
+      "C.13, 14 y 15",
+      "D.12, 13 y 14"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "54. Nairo  Quintana  se  está  preparando  para  ganar  el  tour  de  Francia,  seguimos  su entrenamiento durante 4 días, en el día 1 recorrió 68.256 metros, en el día 2 recorrió",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "q": "5.989 metros menos que el día 1, el día 3 recorre el doble del día 1 y el día 4 recorrió",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "q": "12.687 metros más que el día 2. ¿Cuántos metros recorrió Nairo Quintana en el día 4?",
+    "options": [
+      "A. 74.954 metros",
+      "B. 18.676 metros",
+      "C. 80.943 metros",
+      "D. 12.687 metros"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "55. ¿Cuál es el número que sigue en cada uno de los siguientes casos? 1, 2, 6, 12, 36, 72, ___",
+    "options": [
+      "A.  144",
+      "B.  226",
+      "C.  216",
+      "D.  321"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "56. Un sitio turístico en el Caribe ofrece tres diferentes cruceros: uno tarda 6 días en ir y regresar a su punto de inicio, el segundo tarda 8 días y el tercero tarda 10 días. Si los tres cruceros partieron al mismo tiempo hace 39 días, ¿cuántos días faltan para que vuelvan a partir el mismo día todos los cruceros?",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "q": "50. La  profesora  Diana  les  preguntó  a  60  estudiantes  de  grado  cuarto  cuál  de  los siguientes libros preferían leer: •Zoro. • La isla del tesoro. • Harry Potter. • Cuentos de los hermanos Grimm. Con las respuestas obtenidas, la profesora Diana elaboró la siguiente gráfica: En la clase se leerán los libros escogidos por más de 10 estudiantes. ¿Cuáles son estos libros?",
+    "options": [
+      "A.  Zoro solamente.",
+      "B.  Zoro y La isla del tesoro solamente.",
+      "C.  Zoro, Harry Potter y La isla del tesoro solamente.",
+      "D.  Zoro, Harry Potter, La isla del tesoro y Cuentos de los hermanos Grimm"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "51. La  profesora  tiene  3  bolsas  con  dulces,  en  cada  bolsa  hay  40  unidades  y  debe repartirlos en tres grupos de 20 alumnos, ¿Cuántos dulces le corresponden a cada estudiante?",
+    "options": [
+      "A. 3",
+      "B. 2",
+      "C. 6",
+      "D. 8"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "52. En un gallinero hay 180 gallinas, cada una pone 1 huevo por día; debo recoger los huevos de los 7 días de la semana y empacarlos en flanes de 30 huevos. ¿Cuántos flanes formo recogiendo los huevos de dos semanas?",
+    "options": [
+      "A. 74 flanes",
+      "A.  3 adultos y un niño.",
+      "B.  4 niños y un adulto.",
+      "C.  7 niños y 3 adultos.",
+      "D.  2 niños y 6 adultos"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "47. Durante  las  vacaciones  de  semana  santa  se  registraron  5.000  turistas  en  Santa Marta.    Del    total    de    estos,    42%    eran    franceses,    15%    alemanes,    18% estadounidenses y el resto eran mexicanos. ¿Cuántos turistas eran mexicanos?",
+    "options": [
+      "A.  750",
+      "B.  1.250",
+      "C.  2.100",
+      "D.  3.750"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "48. Ciertas bacterias en su ambiente se reproducen dividiéndose en dos cada hora. Para que la población sea 512, el número de horas es:",
+    "options": [
+      "A.  9.",
+      "B.  8.",
+      "C.  10.",
+      "D.  12"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "49. Con 15 metros de cinta amarilla, Claudia puede hacer 5 adornos del mismo tamaño, iguales, sin que sobre cinta. ¿Cuántos adornos del mismo tamaño de los amarillos puede hacer con 30 metros de cinta azul sin que sobre cinta?",
+    "options": [
+      "A.  3",
+      "B.  5",
+      "C.  10",
+      "D.  15",
+      "A.  Corchea, semicorchea y fusa.",
+      "B.  Fusa, semicorchea y corchea.",
+      "C.  Fusa, corchea y semicorchea.",
+      "D.  Semicorchea, fusa corchea."
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "44. Para ir de la casa al colegio, Camila debe pasar por la iglesia y por la plaza. Las distancias que debe recorrer se muestran en la figura. En total, ¿qué distancia debe recorrer Camila para ir de la casa al colegio? 15",
+    "options": [
+      "A.             km",
+      "B.        2   km",
+      "C.        4  km",
+      "D.             km"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "45. En  la  librería  Panamericana  el  precio  de  una  enciclopedia  es  de  $756.000.  Los estudiantes que presenten su carné tendrán un descuento del 20%.  ¿Cuánto pagara un estudiante por la compra de esta enciclopedia?",
+    "options": [
+      "A.  $151.200",
+      "B.  $604.900",
+      "C.  $604.800",
+      "D.  $453600"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "46. En la entrada del circo el día viernes estaba el siguiente aviso:",
+    "options": [
+      "A. 16푐푚2",
+      "B. 32 푐푚2",
+      "C. 64 푐푚2",
+      "D. 128푐푚2"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "42. Teresa,  Héctor  y  Cristina  se  presentaron  como  candidatos  en  la  elección  de personero de clase. Si todos participaron, ¿cuántos compañeros había en la clase en total?",
+    "options": [
+      "A.14",
+      "B.24",
+      "C.27",
+      "D.25"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "43. Observa la información sobre algunas notas musicales.",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "q": "39. El coche irá por el camino blanco hasta la casa sin pasar dos veces por el mismo punto. ¿Cuántas veces dará vuelta a la izquierda?",
+    "options": [
+      "A. 1",
+      "B. 2",
+      "C. 3",
+      "D. 4"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "40. El  carro  de  Willy  requiere  6  galones  de  gasolina  para  recorrer  240  kilómetros. ¿Cuántos galones necesita el automóvil para recorrer 480 kilómetros?",
+    "options": [
+      "A.  12",
+      "B.  10",
+      "C.  8",
+      "D.  6"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "41. Una hoja de papel cuadrada se dobla por la mitad y luego se corta, como muestra la figura. Si el perímetro de uno de los dos rectángulos iguales resultantes es 24 cm y uno de los lados del rectángulo mide 4 cm, entonces el área de la hoja de papel en centímetros cuadrados es:",
+    "options": [
+      "A.         250",
+      "B.         251",
+      "C.         255",
+      "D.         260"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "37. Lucy tiene las 5 tarjetas que se muestran. Sólo se ve un lado de las tarjetas y se sabe que las que tienen una flor en un lado, por atrás tienen un perro y viceversa. Las que tienen un gato en una cara por detrás tienen un  ́árbol y viceversa. ¿Cuántas flores en total tienen las tarjetas de Lucy?",
+    "options": [
+      "A.  1",
+      "B.  2",
+      "C.  3",
+      "D.  4"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "38. El promedio de las notas de 15 estudiantes es 4 y el promedio de las notas de otros 10 estudiantes es 5. ¿Cuál es el promedio total de las notas del grupo?",
+    "options": [
+      "A.         4,1",
+      "B.         4,2",
+      "C.         4,3",
+      "D.         4,4",
+      "B.  2",
+      "C.  3",
+      "D.  4"
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "34. Sara  toma  una  hoja  de  papel  y  dibuja  una  cuadrícula  de  manera  que  cada  uno  de  los  cuadrados tengan de 2 cm de largo. ¿Cuál es el área del cuadrilátero sombreado?",
+    "options": [
+      "A.         76 cm2",
+      "B.         78 cm2",
+      "C.         84 cm2",
+      "D.         96 cm2"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "35. Adán construyó menos castillos de arena que  Martín, pero más que Susana. Lucy construyó  más  castillos  de  arena  que  Adán  y  también  más  que  Martín.  Diana construyó  más  castillos  de  arena  que  Martín,  pero  menos  que  Lucy.  ¿Quién construyó más castillos?",
+    "options": [
+      "A.  Martín",
+      "B.  Adán",
+      "C.  Susana",
+      "D.  Lucy"
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "36. Sofia hace una fila de 50 casas usando palitos de fósforo. En la figura mostrada, se puede ver el inicio. ¿Cuántos palitos de fósforo utiliza Sofia?",
+    "options": [
+      "A.         15 cm2",
+      "B.         18 cm2",
+      "C.         20 cm2",
+      "D.         25 cm2"
+    ],
+    "answer": ""
+  },
+  {
+    "q": "31. Eva tenía 12 dulces, Rosa tenía 9 dulces y Carlota no tenía ninguno. Juntaron todos los dulces y los repartieron de manera que a cada una le tocara la misma cantidad. ¿Cuántos dulces le tocaron a cada una?",
+    "options": [
+      "A.  5",
+      "B.  6",
+      "C.   7",
+      "D.  8"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "32.  Marco llama obediente a un número natural si puede escribirse como producto de dos números naturales consecutivos. Ejemplo: el número 20 es obediente ya que 20 = 4×5. ¿Cuántos números obedientes hay entre 1 y 100?",
+    "options": [
+      "A.         9",
+      "B.         10",
+      "C.         11",
+      "D.         12"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "33. Andrés tiene el triple de canicas que Juan y entre los dos reunieron 168 canicas. ¿Cuántas canicas tiene Andrés y cuántas canicas tiene Juan?",
+    "options": [
+      "A.  Andrés tiene 56 y Juan 112 canicas",
+      "B.  Andrés tiene 140 y Juan 28 canicas",
+      "C.  Andrés tiene 126 y Juan 42 canicas",
+      "D.  Andrés tiene 96 y Juan 72 canicas.",
+      "A.  1",
+      "B.  3",
+      "C.  4",
+      "D.  5"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "28.  La cruz de la figura está formada por cinco cuadrados iguales y el área del triángulo que se muestra es de 30 cm2. ¿Cuál es el área de la cruz?",
+    "options": [
+      "A.         100 cm2",
+      "B.         120 cm2",
+      "C.         150 cm2",
+      "D.         180 cm2"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "29. El Sr. Rodríguez quiere tender las toallas que lavó usando la menor cantidad posible de pinzas. Para 3 toallas necesita 4 pinzas, como se muestra en la gura. ¿Cuántas pinzas necesita para 9 toallas?",
+    "options": [
+      "A.   9",
+      "B.   10",
+      "C.   12",
+      "D.   16"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "30. Los triángulos I, II, III son triángulos rectángulos e isósceles. El área de I es 2 cm2 y el área de II es 8 cm2. ¿Cuál es el área de III?",
+    "options": [
+      "A.       9",
+      "B.       10",
+      "C.       11",
+      "D.       13"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "24. María, Cristina y Natalia trabajan en una escuela. Cada día, entre el lunes al viernes, exactamente  por  día  trabajan  dos  de  ellas.  María  trabaja  3  días  de  la  semana  y Cristina trabaja 4. ¿Cuántos días trabaja Natalia?",
+    "options": [
+      "A.  1",
+      "B.  2",
+      "C.  3",
+      "D.  4"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "25. En una competencia de ciclismo, a Gonzalo le toma 30 segundos completar una vuelta, mientras que Claudia tarda 32 segundos. Cuando Gonzalo esté completando la vuelta 80 ¿Cuántas vueltas estará completando Claudia?",
+    "options": [
+      "A.       73",
+      "B.       74",
+      "C.       75",
+      "D.       76"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "26. ¿Cuántos números entre 10 y 99 la suma de sus dígitos es imp",
+    "options": [
+      "A.       45",
+      "B.       48",
+      "C.       50",
+      "D.       60"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "27. Marco  tiene  9  dulces  y  Raúl  tiene  17  dulces.  ¿Cuántos  dulces  debe  darle  Raúl a Marco para que los dos tengan la misma cantidad de dulces?",
+    "options": [
+      "A.  2"
+    ],
+    "answer": ""
+  },
+  {
+    "q": "19. De un barril de cerveza que se encontraba lleno, se saca la mitad, luego se saca la mitad  de  lo  que  quedaba  y  luego  un  cuarto  del  resto.  Si  aún  quedan  6  litros, inicialmente había:",
+    "options": [
+      "A.  32 litros",
+      "B.  36 litros",
+      "C.  42 litros",
+      "D.  46 litros"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "20. Si    퐴=   6+6+6+⋯ +6 ⏟      y  퐵 =   7+7+7+⋯ +7 ⏟     calcular 14 푣푒푐푒푠                   15 푣푒푐푒푠 퐵− 퐴=",
+    "options": [
+      "A.13",
+      "B.12",
+      "C.21",
+      "D.31"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "21. A Juan Pablo le gusta jugar con su calculadora, la última vez digitó un número en ella, lo multiplicó por 3, al resultado le sumó 12, luego dividió lo que tenía entre 7 y obtuvo 15 como resultado final. ¿Cuál fue el número que digito inicialmente Juan Pablo?",
+    "options": [
+      "A.       16",
+      "B.       17",
+      "C.       28",
+      "D.       31"
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "22. Samara  sumó algunos  números  y obtuvo  2016, pero se  equivocó  y sumó 201  en lugar de 102. ¿Cuál es el resultado correcto?",
+    "options": [
+      "A.1817",
+      "B.1905",
+      "C.1914",
+      "D. 1917"
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "23. Cuántos triángulos se pueden ver en la siguiente figura.",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "q": "14. Los puntajes obtenidos por 9 alumnos son los siguientes: 9.0; 9.2; 8.5; 9.5; 8.3; 8.3,",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "q": "9.8; 8.2; 9.8. ¿Cuál es el promedio de los tres más altos?",
+    "options": [
+      "A.  9.8",
+      "B.  9.7",
+      "C.  9.6",
+      "D.  9.5"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "15. Hay 4 tarjetas en línea, como se muestra. ¿Cuál de las siguientes líneas no puede obtenerse intercambiando exactamente dos de las tarjetas?",
+    "options": [],
+    "answer": "B"
+  },
+  {
+    "q": "16. Una modista tiene un rollo de tela de 18 m. Todos los días recorta 3 m, el número de días necesarios para realizar el último corte es:",
+    "options": [
+      "A.  4",
+      "B.  5",
+      "C.  6",
+      "D.  7"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "17. La suma de tres números enteros positivos distintos es 7. ¿Cuál es el producto de estos tres enteros?",
+    "options": [
+      "A. 12",
+      "B. 10",
+      "C.  8",
+      "D.  9"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "18. Un grupo de niñas están en un círculo. Gaby es la cuarta a la izquierda de Vero y la séptima a la derecha de Vero. ¿Cuántas niñas hay en el grupo?",
+    "options": [
+      "A.  12",
+      "B.  10",
+      "C.  9",
+      "D.  11",
+      "A.  16 cm²",
+      "B.  8 cm²",
+      "C.  4 cm²",
+      "D.  1 cm²"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "12. Ivonne tiene 4 cajas grandes. Dentro de cada una de ellas hay 3 cajas medianas, y dentro de cada caja mediana hay 2 cajas pequeñas, ¿Cuántas cajas tiene Ivonne en total?",
+    "options": [
+      "A.  20 cajas",
+      "B.  24 cajas",
+      "C.  42 cajas",
+      "D.  22 cajas"
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "13. ¿Qué fracción del área del cuadrado esta sombreado? 8",
+    "options": [
+      "A.",
+      "B.",
+      "C.",
+      "D.",
+      "A.  20 horas",
+      "B.  15 horas",
+      "C.  10 horas",
+      "D.  Muchas horas"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "9.  Un  pastel  se  corta  quitando  cada  vez  la  tercera  parte  del  pastel  que  hay  en  el momento de cortar. ¿Qué fracción del pastel original quedó después de cortarlo tres veces? 8",
+    "options": [
+      "A.",
+      "B.",
+      "C.",
+      "D."
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "10. Hay 4 pelotas en las balanzas, marcadas con las letras A, B, C y D. Una de ellas pesa 100 g, otra 200 g, otra 300 g y otra 400 g. ¿Cuál de las siguientes afirmaciones es verdadera?",
+    "options": [
+      "A.  La bola A pesa el doble que la bola B.",
+      "B.  La bola A pesa 300 g.",
+      "C.  La bola A pesa el doble que la bola D.",
+      "D.  La bola A pesa el doble que la bola C."
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "11. Hay exactamente seis números de tres dígitos que se pueden formar usando cada uno de los dígitos 4, 5, 6 una sola vez en cada número. ¿Cuál es el promedio de estos seis números?",
+    "options": [
+      "A.  500",
+      "B.  550",
+      "C.  555",
+      "D.  505",
+      "D.  18"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "5.  Un total de 350 Kg de queso es empacado en varias cajas, cada una de las cuales contiene 134 Kg de queso. Cada caja es sellada y el sello cuesta $17.50. ¿Cuál es el precio total de los sellos que se deben utilizar para colocarlos en cada una de las cajas de queso?",
+    "options": [
+      "A.  $3.050",
+      "B.  $3.000",
+      "C.  $3.005",
+      "D.  $3.500"
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "6.  El camino de la casa de Ana a la de Mari es de 16 Km. El camino de la casa de Mari a  la  de  Juan  es  de  20  Km.  Desde  el  cruce  de  caminos  hasta  la  casa  de  Mari,  el camino mide 9 Km. ¿Cuánto mide el camino de la casa de Ana a la casa de Juan?",
+    "options": [
+      "A.  11 Km",
+      "B.  9 km",
+      "C.  7 km",
+      "D.  18 km"
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "7.  La rueda de una bicicleta tiene una circunferencia de 3 metros, y la rueda trasera, tiene  una  circunferencia  de  4  metros.  Al  recorrer  una  distancia  de  5280  metros, ¿Cuántas vueltas más da la rueda delantera que la trasera?",
+    "options": [
+      "A.  430 vueltas",
+      "B.  420 vueltas",
+      "C.  440 vueltas",
+      "D.  400 vueltas"
+    ],
+    "answer": "C"
+  },
+  {
+    "q": "8.  En una fábrica, una bomba se enciende automáticamente cada 2 horas para cargar un tanque, otra, cada 4 horas y otra cada 5 horas. Si las tres bombas se encienden a las 8:00 am ¿cuánto tiempo pasará hasta que se enciendan al tiempo otra vez? XVIII OLIMPIADA MUNICIPAL DE MATEMÁTICA PARA PRIMARIA  2022",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "q": "1.  Un dado con forma de cubo tiene dos caras azules, dos verdes, una amarilla y una roja. La probabilidad de que, al lanzar el dado, éste muestre una cara azul es:",
+    "options": [
+      "A.   Igual a la probabilidad de que muestre una cara roja.",
+      "B.   La mitad de la probabilidad de que muestre una cara verde.",
+      "C.  La mitad de la probabilidad de que muestre una cara roja.",
+      "D.  Igual a la probabilidad de que muestre una cara verde."
+    ],
+    "answer": "D"
+  },
+  {
+    "q": "2.  ¿Cuál es la medida, en grados, del ángulo menor formado por las manecillas del reloj cuando son las 10:00 am?",
+    "options": [
+      "A.  45°",
+      "B.  60◦",
+      "C.  12◦",
+      "D.  300"
+    ],
+    "answer": "B"
+  },
+  {
+    "q": "3.  Una persona cuándo camina gasta 5 veces más tiempo que cuando corre. Cuando corre hace 100 metros en 20 segundos. ¿Qué distancia hará si camina durante 100 segundos?",
+    "options": [
+      "A.  100 metros",
+      "B.  150 metros",
+      "C.  140 metros",
+      "D.  120 metros"
+    ],
+    "answer": "A"
+  },
+  {
+    "q": "4.  Diana estuvo lanzando dardos. En la figura se muestran los tres lanzamientos que hizo. La primera vez obtuvo 6 puntos y la segunda obtuvo 8 puntos. ¿Cuántos puntos obtuvo la tercera vez?",
+    "options": [
+      "A.  9",
+      "B.  12",
+      "C.  14"
+    ],
+    "answer": ""
+  }
+]

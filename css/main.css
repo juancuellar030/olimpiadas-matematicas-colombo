@@ -76,7 +76,6 @@
 }
 
 /* ── Reset ─────────────────────────────────────────────── */
-*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -302,6 +301,15 @@ header .theme-toggle {
   width: 36px;
   height: 36px;
   font-size: 1.1rem;
+}
+
+/* Ensure icon spans don't misalign the icon */
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 /* ── Form Inputs ───────────────────────────────────────── */

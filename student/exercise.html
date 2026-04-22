@@ -243,17 +243,9 @@
             };
 
             if (activityData.type === 'B') {
-                fetch('../data/tangrams.json')
-                    .then(r => r.json())
-                    .then(bank => {
-                        currentExObj = new TypeBExercise(container, activityData, bank, () => {
-                            // point callback
-                        });
-                        // Type B auto-saves tangrams via window._saveTangram
-                        // It never "submits" to advance until timer expires
-                        // Hide progress info since it's a loop
-                        document.querySelector('.progress-wrap').style.display = 'none';
-                    });
+                // TypeBExercise uses its built-in DEFAULT_TANGRAMS when bank is null
+                currentExObj = new TypeBExercise(container, activityData, null, () => { });
+                document.querySelector('.progress-wrap').style.display = 'none';
             } else {
                 // Type A standard
                 document.querySelector('.progress-wrap').style.display = 'block';

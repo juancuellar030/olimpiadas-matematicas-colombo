@@ -65,7 +65,7 @@ class TypeAExercise {
 
     // Mount procedure template
     const procContainer = this.container.querySelector('#proc-container');
-    this.proc = new ProcedureTemplate(procContainer, a.procedure);
+    this.proc = new ProcedureTemplate(procContainer, a.procedure, a.question);
 
     // Watch procedure changes to update submit btn
     this._watchInputs();

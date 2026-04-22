@@ -12,20 +12,28 @@ class ProcedureTemplate {
    * @param {HTMLElement} container
    * @param {object}      procedure - activity.procedure definition
    */
-  constructor(container, procedure) {
+  constructor(container, procedure, questionText) {
     this.container = container;
     this.procedure = procedure;
+    this.questionText = questionText || '';
     this.studentAnswer = { inputs: [], operation: null, result: null };
     this.render();
+  }
+
+  _inferOperandCount() {
+    // Count numbers in the question string to determine how many rows to show
+    const matches = this.questionText.match(/\d+[.,]?\d*/g);
+    const cnt = matches ? matches.length : 2;
+    // Clamp between 2 and 4
+    return Math.min(4, Math.max(2, cnt));
   }
 
   render() {
     const p = this.procedure;
     if (!p) { this.container.innerHTML = ''; return; }
 
-    // Extract number items from template
-    const numberItems = (p.template || []).filter(t => t.type === 'number');
-    const numCount = numberItems.length || 2;
+    // Infer operand count from question text (e.g. "12 × 15 + 4" → 3)
+    const numCount = this._inferOperandCount();
 
     this.container.innerHTML = `
       <div class="proc-wrap">

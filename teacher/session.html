@@ -198,7 +198,11 @@
         <div class="brand">Control de Olimpiada</div>
         <div class="flex items-center gap-2">
             <div class="pulse-dot"></div>
-            <span style="font-size:0.8rem;color:var(--green);margin-right:1rem;">Supervisando en vivo</span>
+            <span style="font-size:0.8rem;color:var(--green);margin-right:0.5rem;">Supervisando en vivo</span>
+            <span
+                style="font-size:0.75rem;font-weight:700;color:var(--text-secondary);letter-spacing:0.06em;margin-right:0.25rem;">CÓDIGO:</span>
+            <span id="top-session-code"
+                style="font-family:var(--font-mono);font-weight:800;font-size:1rem;color:var(--orange);letter-spacing:0.1em;margin-right:1rem;">------</span>
             <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema"
                 style="position: relative; top: 0; right: 0; width: 36px; height: 36px; font-size: 1.2rem;">
                 <span class="icon-sun"><i class="hgi-stroke hgi-sun-03"></i></span>
@@ -267,6 +271,12 @@
             }
 
             totalAssigned = session.assignedActivities ? session.assignedActivities.length : 5;
+
+            // Show session code in top bar
+            if (session.code) {
+                const codeEl = document.getElementById('top-session-code');
+                if (codeEl) codeEl.textContent = session.code;
+            }
 
             // Timer
             timerInstance = new SyncTimer({

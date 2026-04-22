@@ -248,8 +248,11 @@
         </div>
 
         <div class="filter-bar">
-            <button class="filter-btn active" data-type="all">Todos (27)</button>
-            <button class="filter-btn" data-type="A">Tipo A — Matemático</button>
+            <button class="filter-btn active" data-type="all">Todos</button>
+            <button class="filter-btn" data-type="G1">Grupo 1</button>
+            <button class="filter-btn" data-type="G2">Grupo 2</button>
+            <button class="filter-btn" data-type="G3">Grupo 3</button>
+            <button class="filter-btn" data-type="G4">Grupo 4</button>
             <button class="filter-btn" data-type="B">Tipo B — Tangram</button>
         </div>
 
@@ -295,7 +298,9 @@
             const grid = document.getElementById('activities-grid');
             const list = filterType === 'all'
                 ? activities
-                : activities.filter(a => a.type === filterType);
+                : filterType.startsWith('G')
+                    ? activities.filter(a => a.type === 'A' && a.group == filterType.replace('G', ''))
+                    : activities.filter(a => a.type === filterType);
 
             grid.innerHTML = list.map((act, i) => {
                 const realIdx = activities.indexOf(act);
